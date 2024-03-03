@@ -33,8 +33,9 @@ import ast
 
 # CELL ********************
 
-AZURE_OPENAI_KEY = '4e188319-488c-4800-b8f2-caad46b02db0'
-AZURE_OPENAI_ENDPOINT = 'https://polite-ground-030dc3103.4.azurestaticapps.net/api/v1'
+#add data here
+AZURE_OPENAI_KEY = ''
+AZURE_OPENAI_ENDPOINT = ''
 
 # CELL ********************
 
