@@ -1,0 +1,6 @@
+table-evaluator 1.6.1
+ctgan 0.9.0
+jupyter-capture-output 0.0.11
+openai 1.12.0
+reportlab 4.1.0
+pdf2image 1.17.0
