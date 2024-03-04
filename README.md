@@ -53,7 +53,7 @@ By leveraging synthetic data generation techniques, outsourcing companies can ef
 
 All the steps (including parameters setting) are implemented in the mainflow.
 
-![pipeline](image-15.png)
+![pipeline](images/image-15.png)
 
 
 ## Setup
@@ -64,72 +64,72 @@ All the steps (including parameters setting) are implemented in the mainflow.
     - *reportlab* 4.1.0
 - Next we need to create a pipeline and to add the following variables as in the image:
 
-![variables](image-10.png)
+![variables](images/image-10.png)
 
 - Create the activies as in the image above and connect them. A special case if the foreach loop for prediction that contains an if function (detailed in the image below).
 
-![foreachloop](image-11.png)
+![foreachloop](images/image-11.png)
 
 Now we take a closer look to each actitivity and to it's settings:  
 -   *import_data_to_lakehouse*: This activity is used to import the data from the source to the lakehouse. The source and the destination are set as parameters (more details in the Usage part)  
 -  *summary_raw_data*: This activity is used to create the summary of the original data. For this activity in the settings point it to the notebook `summary_raw_data`.
 
-![Alt text](image-29.png)
+![Alt text](images/image-29.png)
 
 - *Gpt_prompting_configuration*: This activity use dataset no of rows and columns and asks Chatgpt using OpenAI API for the batch size and the no of epochs for each dataset. For this activity we have the following settings:
 
-![Alt text](image-13.png) 
+![Alt text](images/image-13.png) 
 
 
 With the value dict_configurations being:
 
-![Alt text](image-14.png)
+![Alt text](images/image-14.png)
 
  *Synthehtic_data_generation* : This activity is used to generate the synthetic data. For this activity in the settings point it to the notebook ` Synthetic_data_generation`.
 
-![Alt text](image-16.png)
+![Alt text](images/image-16.png)
 
 With the value dict_configurations being:
 
 
-![Alt text](image-20.png)
-![Alt text](image-21.png)
+![Alt text](images/image-20.png)
+![Alt text](images/image-21.png)
 
 
 *Summary_synthetic_data* : After the synthetic data is created we analyze again the data and save the resulted statistics of the synthetic data into a csv.
 
-![Alt text](image-22.png)
+![Alt text](images/image-22.png)
 
 - *Report_prompting*: Based on the sumary files, this activity is used to  generate prompts for Chatgpt using OpenAI API. Further they will be used to generate the final report.
 
 - *Gpt_prompting*: This activity is used to generate the report based on the prompt composed in the previous step (notebook *Report_prompting*). For this activity we have the following settings:
 
-![Alt text](image-23.png)
-![Alt text](image-24.png)
+![Alt text](images/image-23.png)
+![Alt text](images/image-24.png)
 
 - *ForEach*: Based on the number of the variables number, this activity will perform either Regression or Classification. 
 
-![Alt text](image-25.png)
-![Alt text](image-26.png)
+![Alt text](images/image-25.png)
+![Alt text](images/image-26.png)
 
 - *Generate_reports*: This activity is used to generate the reports for each dataset. For this activity we have the following settings:
 
-![Alt text](image-27.png)
-![Alt text](image-28.png)
+![Alt text](images/image-27.png)
+![Alt text](images/image-28.png)
 
 ## Usage
 - In the mainflow, the first parameters we set are for `import_data_to_lakehouse`. These parameters as the names suggests define the source and the destinations of the data to be processed.
 
-![Alt text](image-6.png)
-![Alt text](image-5.png)
+![Alt text](images/image-6.png)
+![Alt text](images/image-5.png)
 
 - The second parameter that we set is `synthetic_dataset_len`. This parameter will define the number of the rows in the generated synthetic dataset.
 
-![Alt text](image-7.png)
+![Alt text](images/image-7.png)
 
 The last parameter we set is `label_variable`. This parameter will define the target column of the synthetic dataset, for each dataset that we want to pass through to the decision tree model.
 
-![Alt text](image-8.png)
+![Alt text](images/image-8.png)
 
 
 ## Room for Improvement
